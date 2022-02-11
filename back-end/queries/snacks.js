@@ -50,11 +50,12 @@ const updateASnack = async (snackObj, id) => {
   const { name, fiber, protein, added_sugar, is_healthy, image } = snackObj;
   try {
     const updatedSnack = await db.one(
-      "UPDATE snacks SET name=$2, fiber=$3, protein=$4, added_sugar=$5, is_healthy=$6, image=$7",
+      "UPDATE snacks SET name=$2, fiber=$3, protein=$4, added_sugar=$5, is_healthy=$6, image=$7 WHERE id=$1 RETURNING *",
       [id, name, fiber, protein, added_sugar, is_healthy, image]
     );
     return updatedSnack;
   } catch (error) {
+    console.log(error)
     return error;
   }
 };
