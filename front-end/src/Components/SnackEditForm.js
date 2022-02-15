@@ -17,24 +17,25 @@ function SnackEditForm() {
     image: "",
   });
 
-
-const updateSnack = (updatedSnack) => {
-    axios.put(`${API}/snacks/${id}`, updatedSnack)
-    .then(() => {
-        navigate(`/snacks`);
+  const updateSnack = (updatedSnack) => {
+    axios
+      .put(`${API}/snacks/${id}`, updatedSnack)
+      .then(
+        () => {
+          navigate(`/snacks`);
         },
         (error) => console.error(error)
       )
       .catch((err) => console.warn("catch", err));
   };
 
-
-const handleTextChange = (event) => {
-    event.target.id === "fiber" ||event.target.id === "protein" ||event.target.id === "added_sugar"
-    ? setSnack({ ...snack, [event.target.id]: Number(event.target.value) })
-    : setSnack({ ...snack, [event.target.id]: event.target.value });
-    };
-
+  const handleTextChange = (event) => {
+    event.target.id === "fiber" ||
+    event.target.id === "protein" ||
+    event.target.id === "added_sugar"
+      ? setSnack({ ...snack, [event.target.id]: Number(event.target.value) })
+      : setSnack({ ...snack, [event.target.id]: event.target.value });
+  };
 
   const handleCheckboxChange = () => {
     setSnack({ ...snack, is_healthy: !snack.is_healthy });
@@ -42,9 +43,8 @@ const handleTextChange = (event) => {
 
   useEffect(() => {
     axios.get(`${API}/snacks/${id}`).then(
-    (response) => setSnack(response.data.payload),
-    () => navigate(`/snacks`)
-
+      (response) => setSnack(response.data.payload),
+      () => navigate(`/snacks`)
     );
   }, [id, navigate]);
 
@@ -60,7 +60,7 @@ const handleTextChange = (event) => {
           id="name"
           value={snack.name}
           type="text"
-          onChange={handleNameChange}
+          onChange={handleTextChange}
           placeholder="Name of Snack"
           required
         />
@@ -92,25 +92,24 @@ const handleTextChange = (event) => {
         />
         <label htmlFor="is_healthy">is_healthy:</label>
         <input
-        id="is_healthy"
-        type="checkbox"
-        onChange={handleCheckboxChange}
-        checked={snack.is_healthy}
+          id="is_healthy"
+          type="checkbox"
+          onChange={handleCheckboxChange}
+          checked={snack.is_healthy}
         />
-          
+
         <label htmlFor="image">is_healthy:</label>
         <input
-        id="image"
-        value={snack.image}
-        type="submit"
-        onChange={handleTextChange}
+          id="image"
+          value={snack.image}
+          type="submit"
+          onChange={handleTextChange}
         />
-          
+
         <br />
         <input type="submit" />
-    </form>
-    <Link to={`/snacks/${id}`}>
-
+      </form>
+      <Link to={`/snacks/${id}`}>
         <button>Nevermind!</button>
       </Link>
     </div>
