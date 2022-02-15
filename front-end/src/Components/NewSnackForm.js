@@ -1,10 +1,10 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 
 const API = process.env.REACT_APP_API_URL;
 
-function SnackEditForm() {
+function NewForm() {
   let { id } = useParams();
   let navigate = useNavigate();
 
@@ -13,16 +13,16 @@ function SnackEditForm() {
     fiber: 0,
     protein: 0,
     added_sugar: 0,
-    is_healthy: true,
+    is_healthy: false,
     image: "",
   });
 
-  const updateSnack = (updatedSnack) => {
+  const newSnack = (addedSnack) => {
     axios
-      .put(`${API}/songs/${id}`, updatedSnack)
+      .post(`${API}/snacks/`, addedSnack)
       .then(
         () => {
-          navigate(`/snacks/${id}`);
+          navigate(`/snacks`);
         },
         (error) => console.error(error)
       )
@@ -38,22 +38,15 @@ function SnackEditForm() {
   const handleNameChange = (event) => {
     setSnack({ ...snack, [event.target.id]: event.target.value });
   };
-
   const handleCheckboxChange = () => {
     setSnack({ ...snack, is_healthy: !snack.is_healthy });
   };
 
-  useEffect(() => {
-    axios.get(`${API}/snacks/${id}`).then(
-      (response) => setSnack(response.data.payload),
-      () => navigate(`/not-found/`)
-    );
-  }, [id, navigate]);
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    updateSnack(snack, id);
+    newSnack(snack);
   };
+
   return (
     <div className="Edit">
       <form onSubmit={handleSubmit}>
@@ -109,4 +102,4 @@ function SnackEditForm() {
   );
 }
 
-export default SnackEditForm;
+export default NewForm;
