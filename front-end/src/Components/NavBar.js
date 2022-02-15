@@ -11,7 +11,7 @@ function NavBar() {
                 <Link to="/snacks">Snacks</Link>
             </button>
             <button className="button">
-                <Link to="/snacks/new">New Snack</Link>
+                <Link to="/snacks">New Snack</Link>
             </button>
             </div>
         </nav>
