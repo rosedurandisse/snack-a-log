@@ -19,7 +19,6 @@ useEffect(() => {
 
 const handleDelete = () => {
     axios.delete(`${API}/snacks/${id}`).then(() => {
-        console.log("You go Girl");
         navigate("/snacks");
     }, (err) => console.error(err)).catch((err) => console.warn(err));
 };

@@ -20,7 +20,7 @@ const [snack, setSnack] = useState({
 const updateSnack = (updatedSnack) => {
     axios.put(`${API}/snacks/${id}`, updatedSnack)
     .then(() => {
-        navigate(`/snacks/${id}`);
+        navigate(`/snacks`);
         },
         (error) => console.error(error))
     .catch((err) => console.warn("catch", err));
@@ -40,7 +40,7 @@ const handleCheckboxChange = () => {
 useEffect(() => {
     axios.get(`${API}/snacks/${id}`).then(
     (response) => setSnack(response.data.payload),
-    () => navigate(`/not-found/`)
+    () => navigate(`/snacks`)
     );
     }, [id, navigate]);
 
@@ -68,6 +68,7 @@ return (
         value={snack.fiber}
         onChange={handleTextChange}
         placeholder="enter amount"
+        required
         />
         <label htmlFor="protein">Protein:</label>
         <input
@@ -90,15 +91,21 @@ return (
         <label htmlFor="is_healthy">is_healthy:</label>
         <input
         id="is_healthy"
-        value={snack.is_healthy}
         type="checkbox"
         onChange={handleCheckboxChange}
-        required
+        checked={snack.is_healthy}
+        />
+        <label htmlFor="image">is_healthy:</label>
+        <input
+        id="image"
+        value={snack.image}
+        type="submit"
+        onChange={handleTextChange}
         />
         <br/>
         <input type="submit" />
     </form>
-    <Link to={`/snacks/${snack.id}`}>
+    <Link to={`/snacks/${id}`}>
         <button>Nevermind!</button>
     </Link>
     </div>
