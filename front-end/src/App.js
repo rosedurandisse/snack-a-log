@@ -1,7 +1,20 @@
+import { Route, Routes } from "react-router-dom";
+import NavBar from "./Components/NavBar";
+import Edit from "./Pages/Edit";
+import Home from "./Pages/Home";
+import Show from "./Pages/Show";
+
 function App() {
   return (
     <div className="App">
-      <h1>Hello, world!</h1>
+      <NavBar/>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/snacks/:id" element={<Show/>}/>
+          <Route path="/snacks/:id/edit" element={<Edit/>}/>
+        </Routes>
+      </main>
     </div>
   );
 }
