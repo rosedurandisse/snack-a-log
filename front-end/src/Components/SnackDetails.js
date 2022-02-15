@@ -3,7 +3,7 @@ const { useState, useEffect } = require("react");
 const { useNavigate, useParams, Link } = require("react-router-dom");
 
 function SnackDetails () {
-    const API = process.env.REACT_API;
+    const API = process.env.REACT_APP_API_URL;
     const navigate = useNavigate();
     const { id }  = useParams();
     const [snack, setSnack] = useState({});
