@@ -21,7 +21,7 @@ function SnackEditForm() {
 const updateSnack = (updatedSnack) => {
     axios.put(`${API}/snacks/${id}`, updatedSnack)
     .then(() => {
-        navigate(`/snacks/${id}`);
+        navigate(`/snacks`);
         },
         (error) => console.error(error)
       )
@@ -42,8 +42,9 @@ const handleTextChange = (event) => {
 
   useEffect(() => {
     axios.get(`${API}/snacks/${id}`).then(
-      (response) => setSnack(response.data.payload),
-      () => navigate(`/not-found/`)
+    (response) => setSnack(response.data.payload),
+    () => navigate(`/snacks`)
+
     );
   }, [id, navigate]);
 
@@ -91,15 +92,25 @@ const handleTextChange = (event) => {
         />
         <label htmlFor="is_healthy">is_healthy:</label>
         <input
-          id="is_healthy"
-          value={snack.is_healthy}
-          type="checkbox"
-          onChange={handleCheckboxChange}
+        id="is_healthy"
+        type="checkbox"
+        onChange={handleCheckboxChange}
+        checked={snack.is_healthy}
         />
+          
+        <label htmlFor="image">is_healthy:</label>
+        <input
+        id="image"
+        value={snack.image}
+        type="submit"
+        onChange={handleTextChange}
+        />
+          
         <br />
         <input type="submit" />
-      </form>
-      <Link to={`/snacks/${id}`}>
+    </form>
+    <Link to={`/snacks/${id}`}>
+
         <button>Nevermind!</button>
       </Link>
     </div>
