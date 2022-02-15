@@ -2,6 +2,7 @@ const { default: axios } = require("axios");
 const { useState, useEffect } = require("react");
 const { useNavigate, useParams, Link } = require("react-router-dom");
 
+
 function SnackDetails () {
     const API = process.env.REACT_APP_API_URL;
     const navigate = useNavigate();
@@ -27,23 +28,23 @@ const handleDelete = () => {
 
 return (
     <article className="snack-detail">
-        <h4>Snack Name: {snack.name}</h4>
-        <div className="showNavigation">
+      <h4>Snack Name: {snack.name}</h4>
+      <div className="showNavigation">
         <div>
-            <Link to="/snacks">
+          <Link to="/snacks">
             <button>Back</button>
-            </Link>
+          </Link>
         </div>
         <div>
-            <Link to={`/snacks/${snack.id}/edit`}>
+          <Link to={`/snacks/${snack.id}/edit`}>
             <button>Edit</button>
-            </Link>
+          </Link>
         </div>
         <div>
-            <button onClick={handleDelete}>Delete</button>
+          <button onClick={handleDelete}>Delete</button>
         </div>
-        </div>
+      </div>
     </article>
-    )
+  );
 }
 export default SnackDetails;
