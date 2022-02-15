@@ -18,7 +18,7 @@ const [snack, setSnack] = useState({
 });
 
 const updateSnack = (updatedSnack) => {
-    axios.put(`${API}/songs/${id}`, updatedSnack)
+    axios.put(`${API}/snacks/${id}`, updatedSnack)
     .then(() => {
         navigate(`/snacks/${id}`);
         },
@@ -28,7 +28,7 @@ const updateSnack = (updatedSnack) => {
 
 
 const handleTextChange = (event) => {
-    event.target.id === "amount" || "protein" || "added_sugar"
+    event.target.id === "fiber" ||event.target.id === "protein" ||event.target.id === "added_sugar"
     ? setSnack({ ...snack, [event.target.id]: Number(event.target.value) })
     : setSnack({ ...snack, [event.target.id]: event.target.value });
     };
@@ -98,7 +98,7 @@ return (
         <br/>
         <input type="submit" />
     </form>
-    <Link to={`/snacks/${id}`}>
+    <Link to={`/snacks/${snack.id}`}>
         <button>Nevermind!</button>
     </Link>
     </div>

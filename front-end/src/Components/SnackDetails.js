@@ -1,6 +1,6 @@
-const { default: axios } = require("axios");
-const { useState, useEffect } = require("react");
-const { useNavigate, useParams, Link } = require("react-router-dom");
+import axios from "axios";
+import { useState, useEffect } from "react"
+import { useNavigate, useParams, Link } from "react-router-dom";
 
 
 function SnackDetails () {
@@ -12,7 +12,7 @@ function SnackDetails () {
 
 useEffect(() => {
     axios.get(`${API}/snacks/${id}`)
-    .then((response) => setSnack(response.data))
+    .then((response) => setSnack(response.data.payload))
     .catch((err) => console.warn(err))
 },[API, id])
 
@@ -24,12 +24,16 @@ const handleDelete = () => {
     }, (err) => console.error(err)).catch((err) => console.warn(err));
 };
 
-
+console.log(snack)
 
 return (
     <article className="snack-detail">
       <h4>Snack Name: {snack.name}</h4>
-      <div className="showNavigation">
+      <p>Fiber: {snack.fiber}</p>
+      <p>Protein: {snack.protein}</p>
+      <p>Added Sugar: {snack.added_sugar}</p>
+      <p>is_healthy: {snack.is_healthy ? "👍🏻": "👎🏼"}</p>
+    <div className="showNavigation">
         <div>
           <Link to="/snacks">
             <button>Back</button>
