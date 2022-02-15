@@ -17,24 +17,25 @@ const [snack, setSnack] = useState({
     image: "",
 });
 
-
-const updateSnack = (updatedSnack) => {
-    axios.put(`${API}/snacks/${id}`, updatedSnack)
-    .then(() => {
-        navigate(`/snacks`);
+  const updateSnack = (updatedSnack) => {
+    axios
+      .put(`${API}/snacks/${id}`, updatedSnack)
+      .then(
+        () => {
+          navigate(`/snacks`);
         },
         (error) => console.error(error)
     )
     .catch((err) => console.warn("catch", err));
 };
 
-
-const handleTextChange = (event) => {
-    event.target.id === "fiber" ||event.target.id === "protein" ||event.target.id === "added_sugar"
-    ? setSnack({ ...snack, [event.target.id]: Number(event.target.value) })
-    : setSnack({ ...snack, [event.target.id]: event.target.value });
-    };
-
+  const handleTextChange = (event) => {
+    event.target.id === "fiber" ||
+    event.target.id === "protein" ||
+    event.target.id === "added_sugar"
+      ? setSnack({ ...snack, [event.target.id]: Number(event.target.value) })
+      : setSnack({ ...snack, [event.target.id]: event.target.value });
+  };
 
 const handleCheckboxChange = () => {
     setSnack({ ...snack, is_healthy: !snack.is_healthy });
@@ -42,9 +43,8 @@ const handleCheckboxChange = () => {
 
 useEffect(() => {
     axios.get(`${API}/snacks/${id}`).then(
-    (response) => setSnack(response.data.payload),
-    () => navigate(`/snacks`)
-
+      (response) => setSnack(response.data.payload),
+      () => navigate(`/snacks`)
     );
 }, [id, navigate]);
 
@@ -57,12 +57,12 @@ return (
     <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <input
-            id="name"
-            value={snack.name}
-            type="text"
-            onChange={handleNameChange}
-            placeholder="Name of Snack"
-            required
+          id="name"
+          value={snack.name}
+          type="text"
+          onChange={handleTextChange}
+          placeholder="Name of Snack"
+          required
         />
         <label htmlFor="fiber">Fiber:</label>
         <input
@@ -105,11 +105,11 @@ return (
             onChange={handleTextChange}
         />
         
+
         <br />
         <input type="submit" />
-    </form>
-    <Link to={`/snacks/${id}`}>
-
+      </form>
+      <Link to={`/snacks/${id}`}>
         <button>Nevermind!</button>
     </Link>
     </div>
