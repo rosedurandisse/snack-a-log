@@ -14,15 +14,17 @@ const [snack, setSnack] = useState({
     protein: 0,
     added_sugar: 0,
     is_healthy: true,
-    image: ""
+    image: "",
 });
+
 
 const updateSnack = (updatedSnack) => {
     axios.put(`${API}/snacks/${id}`, updatedSnack)
     .then(() => {
         navigate(`/snacks`);
         },
-        (error) => console.error(error))
+        (error) => console.error(error)
+    )
     .catch((err) => console.warn("catch", err));
 };
 
@@ -33,6 +35,7 @@ const handleTextChange = (event) => {
     : setSnack({ ...snack, [event.target.id]: event.target.value });
     };
 
+
 const handleCheckboxChange = () => {
     setSnack({ ...snack, is_healthy: !snack.is_healthy });
 };
@@ -41,9 +44,9 @@ useEffect(() => {
     axios.get(`${API}/snacks/${id}`).then(
     (response) => setSnack(response.data.payload),
     () => navigate(`/snacks`)
-    );
-    }, [id, navigate]);
 
+    );
+}, [id, navigate]);
 
 const handleSubmit = (event) => {
     event.preventDefault();
@@ -52,60 +55,61 @@ const handleSubmit = (event) => {
 return (
     <div className="Edit">
     <form onSubmit={handleSubmit}>
-    <label htmlFor="name">Name:</label>
+        <label htmlFor="name">Name:</label>
         <input
-        id="name"
-        value={snack.name}
-        type="text"
-        onChange={handleTextChange}
-        placeholder="Name of Snack"
-        required
+            id="name"
+            value={snack.name}
+            type="text"
+            onChange={handleNameChange}
+            placeholder="Name of Snack"
+            required
         />
         <label htmlFor="fiber">Fiber:</label>
         <input
-        id="fiber"
-        type="number"
-        value={snack.fiber}
-        onChange={handleTextChange}
-        placeholder="enter amount"
-        required
+            id="fiber"
+            type="number"
+            value={snack.fiber}
+            onChange={handleTextChange}
+            placeholder="enter amount"
         />
         <label htmlFor="protein">Protein:</label>
         <input
-        id="protein"
-        value={snack.protein}
-        type="number"
-        onChange={handleTextChange}
-        placeholder="enter amount"
-        required
+            id="protein"
+            value={snack.protein}
+            type="number"
+            onChange={handleTextChange}
+            placeholder="enter amount"
+            required
         />
         <label htmlFor="added_sugar">Added Sugar:</label>
         <input
-        id="added_sugar"
-        value={snack.added_sugar}
-        type="number"
-        onChange={handleTextChange}
-        placeholder="enter amount"
-        required
+            id="added_sugar"
+            value={snack.added_sugar}
+            type="number"
+            onChange={handleTextChange}
+            placeholder="enter amount"
+            required
         />
         <label htmlFor="is_healthy">is_healthy:</label>
         <input
-        id="is_healthy"
-        type="checkbox"
-        onChange={handleCheckboxChange}
-        checked={snack.is_healthy}
+            id="is_healthy"
+            type="checkbox"
+            onChange={handleCheckboxChange}
+            checked={snack.is_healthy}
         />
         <label htmlFor="Image" for="image">Image:</label>
         <input
-        id="image"
-        value={snack.image}
-        type="text"
-        onChange={handleTextChange}
+            id="image"
+            value={snack.image}
+            type="text"
+            onChange={handleTextChange}
         />
-        <br/>
+        
+        <br />
         <input type="submit" />
     </form>
     <Link to={`/snacks/${id}`}>
+
         <button>Nevermind!</button>
     </Link>
     </div>
