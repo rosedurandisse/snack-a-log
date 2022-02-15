@@ -13,7 +13,7 @@ app.use(cors());
 // ROUTES
 app.use("/snacks", snacksController);
 app.get("/", (request, response) => {
-  response.send("Welcome to the snack app");
+  response.send("Get Snack'n at Snack-a-log!");
 });
 
 app.get("*", (request, response) => {
