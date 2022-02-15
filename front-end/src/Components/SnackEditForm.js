@@ -17,24 +17,25 @@ function SnackEditForm() {
     image: "",
   });
 
-
-const updateSnack = (updatedSnack) => {
-    axios.put(`${API}/snacks/${id}`, updatedSnack)
-    .then(() => {
-        navigate(`/snacks/${id}`);
+  const updateSnack = (updatedSnack) => {
+    axios
+      .put(`${API}/snacks/${id}`, updatedSnack)
+      .then(
+        () => {
+          navigate(`/snacks/${id}`);
         },
         (error) => console.error(error)
       )
       .catch((err) => console.warn("catch", err));
   };
 
-
-const handleTextChange = (event) => {
-    event.target.id === "fiber" ||event.target.id === "protein" ||event.target.id === "added_sugar"
-    ? setSnack({ ...snack, [event.target.id]: Number(event.target.value) })
-    : setSnack({ ...snack, [event.target.id]: event.target.value });
-    };
-
+  const handleTextChange = (event) => {
+    event.target.id === "fiber" ||
+    event.target.id === "protein" ||
+    event.target.id === "added_sugar"
+      ? setSnack({ ...snack, [event.target.id]: Number(event.target.value) })
+      : setSnack({ ...snack, [event.target.id]: event.target.value });
+  };
 
   const handleCheckboxChange = () => {
     setSnack({ ...snack, is_healthy: !snack.is_healthy });
@@ -59,7 +60,7 @@ const handleTextChange = (event) => {
           id="name"
           value={snack.name}
           type="text"
-          onChange={handleNameChange}
+          onChange={handleTextChange}
           placeholder="Name of Snack"
           required
         />
