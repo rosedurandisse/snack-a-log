@@ -29,17 +29,17 @@ const updateSnack = (updatedSnack) => {
 
 const handleTextChange = (event) => {
     event.target.id === "amount" || "protein" || "added_sugar"
-    ? setTransaction({ ...snack, [event.target.id]: Number(event.target.value) })
-    : setTransaction({ ...snack, [event.target.id]: event.target.value });
+    ? setSnack({ ...snack, [event.target.id]: Number(event.target.value) })
+    : setSnack({ ...snack, [event.target.id]: event.target.value });
     };
 
 const handleCheckboxChange = () => {
-    setSong({ ...snack, is_healthy: !song.is_healthy });
+    setSnack({ ...snack, is_healthy: !snack.is_healthy });
 };
 
 useEffect(() => {
     axios.get(`${API}/snacks/${id}`).then(
-    (response) => setSnack(response.data),
+    (response) => setSnack(response.data.payload),
     () => navigate(`/not-found/`)
     );
     }, [id, navigate]);
@@ -105,4 +105,4 @@ return (
     );
 }
 
-// export default SongEditForm;
+export default SnackEditForm;
