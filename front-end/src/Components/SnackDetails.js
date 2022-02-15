@@ -23,7 +23,6 @@ const handleDelete = () => {
     }, (err) => console.error(err)).catch((err) => console.warn(err));
 };
 
-console.log(snack)
 
 return (
     <article className="snack-detail">
