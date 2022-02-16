@@ -1,9 +1,13 @@
-const { default: axios } = require("axios");
-const { useState, useEffect } = require("react");
-const { useNavigate, useParams, Link } = require("react-router-dom");
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams, Link } from "react-router-dom";
+import HeartHealth from "./HeartHealth";
+
+
+
 
 function SnackDetails () {
-    const API = process.env.REACT_API;
+    const API = process.env.REACT_APP_API_URL;
     const navigate = useNavigate();
     const { id }  = useParams();
     const [snack, setSnack] = useState({});
@@ -11,39 +15,43 @@ function SnackDetails () {
 
 useEffect(() => {
     axios.get(`${API}/snacks/${id}`)
-    .then((response) => setSnack(response.data))
+    .then((response) => setSnack(response.data.payload))
     .catch((err) => console.warn(err))
 },[API, id])
 
 
 const handleDelete = () => {
     axios.delete(`${API}/snacks/${id}`).then(() => {
-        console.log("You go Girl");
         navigate("/snacks");
     }, (err) => console.error(err)).catch((err) => console.warn(err));
 };
 
 
-
 return (
-    <article className="snack-detail">
-        <h4>Snack Name: {snack.name}</h4>
-        <div className="showNavigation">
+    <article className="Snacks">
+      <aside className="">
+                {<HeartHealth snackHealth={snack.is_healthy} />}
+            </aside>
+        <div><img src={snack.image} alt={snack.name}/></div>
+            <div>Protein: {snack.protein}</div>
+            <div>Fiber: {snack.fiber}</div>
+            <div>Added Sugar: {snack.added_sugar}</div>
+            <div></div>
         <div>
-            <Link to="/snacks">
+          <Link to="/snacks">
             <button>Back</button>
-            </Link>
+          </Link>
         </div>
         <div>
-            <Link to={`/snacks/${snack.id}/edit`}>
+          <Link to={`/snacks/${snack.id}/edit`}>
             <button>Edit</button>
-            </Link>
+          </Link>
         </div>
         <div>
-            <button onClick={handleDelete}>Delete</button>
+          <button onClick={handleDelete}>Delete</button>
         </div>
-        </div>
+      
     </article>
-    )
+  );
 }
 export default SnackDetails;
