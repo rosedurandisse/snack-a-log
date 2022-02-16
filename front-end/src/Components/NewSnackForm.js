@@ -103,6 +103,7 @@ function NewForm() {
           type="text"
           onChange={handleTextChange}
         />
+
         <br />
         <input type="submit" />
       </form>
