@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
+
 
 
 function SnackDetails () {
@@ -30,8 +31,8 @@ return (
       <p>Fiber: {snack.fiber}</p>
       <p>Protein: {snack.protein}</p>
       <p>Added Sugar: {snack.added_sugar}</p>
-      <p>is_healthy: {snack.is_healthy ? "👍🏻": "👎🏼"}</p>
-    <div className="showNavigation">
+      <p>is_healthy: {snack.is_healthy ? "👍🏻" : "👎🏼"}</p>
+      <div className="showNavigation">
         <div>
           <Link to="/snacks">
             <button>Back</button>

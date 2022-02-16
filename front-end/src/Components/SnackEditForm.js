@@ -97,6 +97,7 @@ return (
             onChange={handleCheckboxChange}
             checked={snack.is_healthy}
         />
+
         <label htmlFor="Image" for="image">Image:</label>
         <input
             id="image"
@@ -104,8 +105,6 @@ return (
             type="text"
             onChange={handleTextChange}
         />
-        
-
         <br />
         <input type="submit" />
       </form>
