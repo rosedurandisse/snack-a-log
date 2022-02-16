@@ -2,34 +2,30 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 
-function SnackDetails() {
-  const API = process.env.REACT_APP_API_URL;
-  const navigate = useNavigate();
-  const { id } = useParams();
-  const [snack, setSnack] = useState({});
 
-  useEffect(() => {
-    axios
-      .get(`${API}/snacks/${id}`)
-      .then((response) => setSnack(response.data.payload))
-      .catch((err) => console.warn(err));
-  }, [API, id]);
 
-  const handleDelete = () => {
-    axios
-      .delete(`${API}/snacks/${id}`)
-      .then(
-        () => {
-          navigate("/snacks");
-        },
-        (err) => console.error(err)
-      )
-      .catch((err) => console.warn(err));
-  };
+function SnackDetails () {
+    const API = process.env.REACT_APP_API_URL;
+    const navigate = useNavigate();
+    const { id }  = useParams();
+    const [snack, setSnack] = useState({});
 
-  console.log(snack);
 
-  return (
+useEffect(() => {
+    axios.get(`${API}/snacks/${id}`)
+    .then((response) => setSnack(response.data.payload))
+    .catch((err) => console.warn(err))
+},[API, id])
+
+
+const handleDelete = () => {
+    axios.delete(`${API}/snacks/${id}`).then(() => {
+        navigate("/snacks");
+    }, (err) => console.error(err)).catch((err) => console.warn(err));
+};
+
+
+return (
     <article className="snack-detail">
       <h4>Snack Name: {snack.name}</h4>
       <p>Fiber: {snack.fiber}</p>
