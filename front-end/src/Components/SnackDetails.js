@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import HeartHealth from "./HeartHealth";
+
 
 
 
@@ -26,13 +28,15 @@ const handleDelete = () => {
 
 
 return (
-    <article className="snack-detail">
-      <h4>Snack Name: {snack.name}</h4>
-      <p>Fiber: {snack.fiber}</p>
-      <p>Protein: {snack.protein}</p>
-      <p>Added Sugar: {snack.added_sugar}</p>
-      <p>is_healthy: {snack.is_healthy ? "👍🏻" : "👎🏼"}</p>
-      <div className="showNavigation">
+    <article className="Snacks">
+      <aside className="">
+                {<HeartHealth snackHealth={snack.is_healthy} />}
+            </aside>
+        <div><img src={snack.image} alt={snack.name}/></div>
+            <div>Protein: {snack.protein}</div>
+            <div>Fiber: {snack.fiber}</div>
+            <div>Added Sugar: {snack.added_sugar}</div>
+            <div></div>
         <div>
           <Link to="/snacks">
             <button>Back</button>
@@ -46,7 +50,7 @@ return (
         <div>
           <button onClick={handleDelete}>Delete</button>
         </div>
-      </div>
+      
     </article>
   );
 }
