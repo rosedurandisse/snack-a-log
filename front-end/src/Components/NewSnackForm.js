@@ -92,6 +92,14 @@ function NewForm() {
           type="checkbox"
           onChange={handleCheckboxChange}
         />
+        <label htmlFor="Image" for="image">Image:</label>
+        <input
+            id="image"
+            value={snack.image}
+            type="text"
+            onChange={handleTextChange}
+        />
+        
         <br />
         <input type="submit" />
       </form>
