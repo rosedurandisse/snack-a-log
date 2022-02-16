@@ -8,7 +8,7 @@ function Snack({ snack }) {
   return (
     <tr>
       <div className="Snack">
-        <img src={snack.image}></img>
+        <img src={snack.image} alt="snacks"></img>
 
         {/* <h4 className="Snack"> */}
         <Link to={`/snacks/${snack.id}`}></Link>

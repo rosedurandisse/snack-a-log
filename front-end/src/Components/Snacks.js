@@ -14,20 +14,12 @@ function Snacks() {
   }, [API]);
   return (
     <div>
-      <section>
-        <table>
-          <thead>
-            <tr>
-              <th>Snacks</th>
-              <th>Deets</th>
-            </tr>
-          </thead>
-          <tbody>
+      <section className="Snacks">
+        <article>
             {snacks.map((snack) => {
               return <Snack key={snack.id} snack={snack} />;
             })}
-          </tbody>
-        </table>
+        </article>
       </section>
     </div>
   );
