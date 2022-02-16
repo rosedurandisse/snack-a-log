@@ -13,7 +13,7 @@ function NewForm() {
     fiber: 0,
     protein: 0,
     added_sugar: 0,
-    is_healthy: false,
+    // is_healthy: false,
     image: "",
   });
 
@@ -38,6 +38,7 @@ function NewForm() {
   const handleNameChange = (event) => {
     setSnack({ ...snack, [event.target.id]: event.target.value });
   };
+
   const handleCheckboxChange = () => {
     setSnack({ ...snack, is_healthy: !snack.is_healthy });
   };
@@ -91,6 +92,16 @@ function NewForm() {
           value={snack.is_healthy}
           type="checkbox"
           onChange={handleCheckboxChange}
+        />
+
+        <label htmlFor="image" for="image">
+          Image:
+        </label>
+        <input
+          id="image"
+          value={snack.image}
+          type="text"
+          onChange={handleTextChange}
         />
         <br />
         <input type="submit" />

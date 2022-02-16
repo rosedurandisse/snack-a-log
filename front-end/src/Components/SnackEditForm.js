@@ -98,11 +98,13 @@ function SnackEditForm() {
           checked={snack.is_healthy}
         />
 
-        <label htmlFor="image">is_healthy:</label>
+        <label htmlFor="image" for="image">
+          Image:
+        </label>
         <input
           id="image"
           value={snack.image}
-          type="submit"
+          type="text"
           onChange={handleTextChange}
         />
 
